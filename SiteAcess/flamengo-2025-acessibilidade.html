@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flamengo 2025 - Acessibilidade</title>
+    <style>
+        :root {
+            --primary-red: #8B0000;
+            --dark-red: #5a0707;
+            --light-red: #d32f2f;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #e0e0e0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 50%, var(--black) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 140px;
+            padding-bottom: 100px;
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+
+        /* Barra de Acessibilidade */
+        .accessibility-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .accessibility-bar button {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid rgba(139, 0, 0, 0.5);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .accessibility-bar button:hover,
+        .accessibility-bar button:focus {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        .accessibility-bar .font-size-controls {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        /* Header */
+        header {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.15) 0%, rgba(10, 10, 10, 0.7) 50%, rgba(139, 0, 0, 0.15) 100%),
+                rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin: 30px auto;
+            max-width: 1200px;
+            text-align: center;
+            border: 2px solid rgba(139, 0, 0, 0.4);
+            box-shadow: 
+                0 10px 40px rgba(139, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+            margin-bottom: 15px;
+            transition: var(--transition);
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            margin-top: 35px;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-red);
+            padding-left: 20px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        h3::before {
+            content: '▸';
+            position: absolute;
+            left: 8px;
+            color: var(--primary-red);
+            font-size: 0.8em;
+        }
+
+        section h3:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            z-index: 9999;
+            border-bottom: 2px solid rgba(139, 0, 0, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            transition: var(--transition);
+            font-weight: 500;
+            display: block;
+            outline: none;
+            position: relative;
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        nav ul li a:hover::before,
+        nav ul li a:focus::before {
+            opacity: 1;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+            border-color: var(--primary-red);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        section {
+            background: 
+                linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(20, 20, 20, 0.6) 100%),
+                rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        section:hover::before {
+            left: 100%;
+        }
+
+        section:hover {
+            border-color: rgba(139, 0, 0, 0.6);
+            box-shadow: 
+                0 12px 40px rgba(139, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        section:focus-within {
+            outline: 3px solid var(--primary-red);
+            outline-offset: 5px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-gray);
+            line-height: 1.9;
+            font-size: 1.05em;
+        }
+
+        /* Image Container */
+        .image-container {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 
+                0 15px 40px rgba(139, 0, 0, 0.5),
+                0 0 0 1px rgba(139, 0, 0, 0.3);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            max-width: 520px;
+            max-height: 520px;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.3), transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .image-container:hover::before {
+            opacity: 1;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 
+                0 20px 50px rgba(139, 0, 0, 0.7),
+                0 0 0 2px rgba(139, 0, 0, 0.5);
+        }
+
+        /* Achievements */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .achievement {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.25) 0%, rgba(90, 7, 7, 0.15) 100%),
+                rgba(26, 26, 26, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            border: 2px solid rgba(139, 0, 0, 0.4);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.2), transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .achievement:hover::after,
+        .achievement:focus::after {
+            opacity: 1;
+        }
+
+        .achievement:hover,
+        .achievement:focus {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.35) 0%, rgba(90, 7, 7, 0.25) 100%),
+                rgba(26, 26, 26, 0.6);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 15px 35px rgba(139, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-color: rgba(139, 0, 0, 0.6);
+        }
+
+        .achievement img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+        }
+
+        .achievement:hover img {
+            transform: scale(1.03);
+        }
+
+        .achievement p {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        /* Narration Section */
+        .narrazione {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.3) 0%, rgba(90, 7, 7, 0.3) 100%);
+            border-left: 4px solid var(--primary-red);
+            padding: 30px;
+            border-radius: 12px;
+            font-style: italic;
+            line-height: 2;
+        }
+
+        .narrazione p {
+            font-size: 1.1em;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        section .narrazione {
+            margin: 30px 0;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.4) 0%, rgba(90, 7, 7, 0.3) 100%);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Expectations */
+        .expectations textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(139, 0, 0, 0.3);
+            background-color: rgba(26, 26, 26, 0.8);
+            color: var(--text-light);
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: var(--transition);
+            min-height: 120px;
+        }
+
+        .expectations textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.2);
+        }
+
+        /* Like Section */
+        .like-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .like-button {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: var(--text-light);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+            outline: none;
+        }
+
+        .like-button:hover,
+        .like-button:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.6);
+            background: linear-gradient(135deg, var(--light-red) 0%, var(--primary-red) 100%);
+        }
+
+        .like-button:active {
+            transform: translateY(-1px);
+        }
+
+        .like-count {
+            margin-top: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-red);
+        }
+
+        /* Footer */
+        footer {
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.7) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 1200px;
+            text-align: center;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            color: var(--text-gray);
+        }
+
+        footer a {
+            color: var(--text-gray);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.5);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        footer a:hover,
+        footer a:focus {
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+
+        /* Button Top */
+        .button-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+            width: 60px;
+            height: 60px;
+            outline: none;
+            z-index: 1000;
+        }
+
+        .button-top:hover,
+        .button-top:focus {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.6);
+        }
+
+        .button-top.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 15px;
+        }
+
+        ul li {
+            padding: 18px 20px;
+            padding-left: 50px;
+            position: relative;
+            color: var(--text-gray);
+            transition: var(--transition);
+            background: rgba(139, 0, 0, 0.1);
+            border-left: 3px solid var(--primary-red);
+            border-radius: 8px;
+            font-size: 1.05em;
+        }
+
+        ul li:before {
+            content: "🏆";
+            position: absolute;
+            left: 15px;
+            font-size: 1.3em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        ul li:hover,
+        ul li:focus {
+            color: var(--text-light);
+            transform: translateX(8px);
+            background: rgba(139, 0, 0, 0.2);
+            border-left-width: 5px;
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Accessibility Features */
+        .high-contrast {
+            --primary-red: #ff0000;
+            --dark-red: #cc0000;
+            --black: #000000;
+            --dark-gray: #000000;
+            --text-light: #ffffff;
+            --text-gray: #ffffff;
+        }
+
+        .large-text {
+            font-size: 1.25em;
+        }
+
+        .large-text h1 {
+            font-size: 3em;
+        }
+
+        .large-text h2 {
+            font-size: 2.2em;
+        }
+
+        .large-text h3 {
+            font-size: 1.7em;
+        }
+
+        .extra-large-text {
+            font-size: 1.5em;
+        }
+
+        .extra-large-text h1 {
+            font-size: 3.5em;
+        }
+
+        .extra-large-text h2 {
+            font-size: 2.6em;
+        }
+
+        .extra-large-text h3 {
+            font-size: 2em;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--primary-red);
+            color: var(--text-light);
+            padding: 10px 20px;
+            text-decoration: none;
+            z-index: 10001;
+        }
+
+        .skip-link:focus {
+            top: 70px;
+        }
+
+        /* Focus Styles */
+        *:focus {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+        }
+
+        button:focus,
+        a:focus {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 3px;
+        }
+
+        /* Two Column Layout for History Sections */
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .history-card {
+            background: rgba(139, 0, 0, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .history-card:hover {
+            background: rgba(139, 0, 0, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 160px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            nav ul {
+                gap: 8px;
+            }
+
+            nav ul li a {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .achievements {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .accessibility-bar {
+                padding: 8px 10px;
+            }
+
+            .accessibility-bar button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Barra de Acessibilidade -->
+    <div class="accessibility-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
+        <span class="sr-only">Ferramentas de acessibilidade</span>
+        <div class="font-size-controls">
+            <button onclick="changeFontSize('small')" aria-label="Diminuir tamanho da fonte">A-</button>
+            <button onclick="changeFontSize('normal')" aria-label="Tamanho normal da fonte">A</button>
+            <button onclick="changeFontSize('large')" aria-label="Aumentar tamanho da fonte">A+</button>
+        </div>
+        <button onclick="toggleHighContrast()" aria-label="Alternar alto contraste">Alto Contraste</button>
+        <button onclick="toggleScreenReader()" aria-label="Ativar leitor de tela">🔊 Leitor de Tela</button>
+        <button onclick="resetAccessibility()" aria-label="Redefinir configurações de acessibilidade">Resetar</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Menu principal">
+        <ul>
+            <li><a href="#historia" aria-label="Ir para a seção História">História</a></li>
+            <li><a href="#historia-2025" aria-label="Ir para a seção História 2025">Flamengo 2025</a></li>
+            <li><a href="#conquistas" aria-label="Ir para a seção Conquistas">Conquistas</a></li>
+            <li><a href="#momentos" aria-label="Ir para a seção Momentos Marcantes">Momentos</a></li>
+            <li><a href="#expectativas" aria-label="Ir para a seção Expectativas">Expectativas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header role="banner">
+        <h1>Flamengo 2025 - Acessibilidade</h1>
+        <p style="color: var(--text-gray); font-size: 1.1em;">Uma jornada de glórias: da fundação em 1895 aos desafios de 2025</p>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <section id="historia" tabindex="0" aria-labelledby="historia-title">
+            <h2 id="historia-title">A História do Flamengo</h2>
+            
+            <h3>Fundação e Primeiros Anos</h3>
+            <p>O Clube de Regatas do Flamengo foi fundado em 17 de novembro de 1895, na Praia do Flamengo, no Rio de Janeiro. Inicialmente, o clube foi criado para a prática do remo, esporte que estava em alta na época. O nome "Flamengo" foi escolhido em homenagem ao bairro onde o clube foi fundado.</p>
+            
+            <p>O futebol chegou ao Flamengo apenas em 1911, quando alguns jogadores do Fluminense deixaram o clube e foram acolhidos pelo Flamengo. Esse episódio marcou o início da maior rivalidade do futebol carioca: o clássico Fla-Flu.</p>
+
+            <h3>A Era de Ouro e Consolidação</h3>
+            <p>O Flamengo se consolidou como um dos maiores clubes do Brasil nas décadas seguintes. Na década de 1980, o clube viveu sua primeira grande era de ouro no futebol, conquistando títulos históricos como a Copa Libertadores da América de 1981, o Mundial de Clubes da FIFA em 1981, e o Campeonato Brasileiro de 1982 e 1983.</p>
+            
+            <p>A geração liderada por Zico, considerada por muitos como o maior jogador da história do clube, marcou uma época inesquecível para a Nação Rubro-Negra. O "Galinho de Quintino" e seus companheiros escreveram páginas memoráveis na história do futebol brasileiro.</p>
+
+            <h3>O Flamengo no Século XXI</h3>
+            <p>Após um período de dificuldades, o Flamengo iniciou uma nova fase de glórias a partir de 2019. Com um projeto ambicioso e investimentos significativos, o clube retomou sua posição de destaque no cenário nacional e internacional, conquistando títulos importantes e formando um elenco de alto nível.</p>
+        </section>
+
+        <div class="image-container" tabindex="0">
+            <img src="https://i.pinimg.com/564x/c5/ef/72/c5ef728cdc53593635b49c82becdb8ce.jpg" alt="Escudo e símbolos do Flamengo, time de futebol brasileiro fundado em 1895">
+        </div>
+
+        <section id="historia-2025" tabindex="0" aria-labelledby="historia-2025-title">
+            <h2 id="historia-2025-title">O Flamengo em 2025: Uma Nova Era</h2>
+            
+            <h3>Contexto e Transformações</h3>
+            <p>Em 2025, o Flamengo continua consolidado como um dos maiores clubes das Américas. Após os triunfos históricos de 2019 e 2022, o clube entrou em uma fase de reestruturação e planejamento estratégico para manter sua hegemonia no futebol brasileiro e buscar novos títulos continentais.</p>
+            
+            <p>O ano de 2024 foi marcado por mudanças importantes na diretoria e no departamento de futebol, com a implementação de novas metodologias de trabalho, investimento em tecnologia e análise de dados, além da modernização da estrutura do clube.</p>
+
+            <h3>Elenco e Identidade Técnica</h3>
+            <p>Em 2025, o Flamengo mantém um elenco competitivo, mesclando experiência de jogadores consagrados com a juventude de novos talentos revelados nas categorias de base. A filosofia de jogo continua baseada em posse de bola, transições rápidas e um futebol ofensivo que encanta a torcida rubro-negra.</p>
+            
+            <p>O clube investiu significativamente em sua infraestrutura, incluindo melhorias no Ninho do Urubu (centro de treinamento), modernização do Maracanã e aprimoramento das categorias de base, garantindo um futuro promissor para as próximas gerações.</p>
+
+            <h3>Desafios e Oportunidades</h3>
+            <p>Os principais desafios para 2025 incluem a busca pelo tricampeonato da Libertadores, a conquista de novos títulos nacionais e a manutenção da competitividade em todas as competições. O clube também continua investindo em programas sociais, sustentabilidade e projetos de inclusão, reforçando seu papel como um agente transformador na sociedade.</p>
+        </section>
+        
+        <section id="conquistas" tabindex="0" aria-labelledby="conquistas-title">
+            <h2 id="conquistas-title">Conquistas Históricas Recentes</h2>
+            <div class="achievements" role="list">
+                <article class="achievement" tabindex="0" role="listitem">
+                    <img src="https://colunadofla.com/wp-content/uploads/2019/11/gabigol-22.jpg" alt="Flamengo campeão da Libertadores em 2019, conquistando o título após 38 anos">
+                    <p>Libertadores 2019<br>Após 38 anos</p>
+                </article>
+                <article class="achievement" tabindex="0" role="listitem">
+                    <img src="https://odia.ig.com.br/_midias/jpg/2022/10/29/1200x750/1_000_32mf2m8-26894633.jpg" alt="Flamengo bicampeão da Libertadores em 2022">
+                    <p>Libertadores 2022<br>Bicampeão Continental</p>
+                </article>
+                <article class="achievement" tabindex="0" role="listitem">
+                    <img src="https://esportenewsmundo.com.br/wp-content/uploads/2021/02/brasileirao-series-a-sao-paulo-v-flamengo-play-behind-closed-doors-amidst-the-coronavirus-covid-19-pandemic-6-1536x1024.jpg" alt="Flamengo campeão do Brasileirão em 2019">
+                    <p>Brasileirão 2019<br>Heptacampeonato Carioca</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="titulos" tabindex="0" aria-labelledby="titulos-title">
+            <h2 id="titulos-title">Títulos Principais do Flamengo</h2>
+            
+            <div class="history-grid">
+                <div class="history-card">
+                    <h3>Competições Internacionais</h3>
+                    <ul role="list">
+                        <li>Mundial de Clubes da FIFA: 1981</li>
+                        <li>Copa Libertadores da América: 1981, 2019 e 2022 (3 títulos)</li>
+                        <li>Copa Intercontinental: 1981</li>
+                        <li>Recopa Sul-Americana: 2020</li>
+                        <li>Copa Mercosul: 1999</li>
+                        <li>Copa Ouro Sul-Americana: 1996</li>
+                    </ul>
+                </div>
+
+                <div class="history-card">
+                    <h3>Competições Nacionais</h3>
+                    <ul role="list">
+                        <li>Campeonato Brasileiro: 1980, 1982, 1983, 1987, 1992, 2009, 2019, 2020 (8 títulos)</li>
+                        <li>Copa do Brasil: 1990, 2006, 2013, 2022 (4 títulos)</li>
+                        <li>Supercopa do Brasil: 2020, 2021 (2 títulos)</li>
+                        <li>Copa dos Campeões: 2001</li>
+                    </ul>
+                </div>
+
+                <div class="history-card">
+                    <h3>Competições Estaduais</h3>
+                    <ul role="list">
+                        <li>Campeonato Carioca: 38 títulos (recordista absoluto)</li>
+                        <li>Taça Guanabara: 24 títulos</li>
+                        <li>Taça Rio: 11 títulos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="narrazione" id="momentos" tabindex="0" aria-labelledby="momentos-title">
+            <h2 id="momentos-title">Momentos Marcantes da História</h2>
+            
+            <h3>A Virada Histórica na Libertadores 2019</h3>
+            <p>O momento mais emocionante da história recente do Flamengo aconteceu na final da Libertadores de 2019, contra o River Plate. Aos 43 minutos do segundo tempo, o Flamengo ainda perdia por 1 a 0. Em dois minutos, Gabriel Barbosa (Gabigol) marcou dois gols, garantindo o título continental após 38 anos.</p>
+            
+            <div class="narrazione" style="margin-top: 25px; margin-bottom: 25px;">
+                <p><strong>Narração Histórica - Final da Libertadores 2019:</strong><br>
+                DOIS CONTRA UM<br>
+                PODE SER O MOMENTO DO FLAMENGO<br>
+                BRUNO HENRIQUE PARTIU<br>
+                GABIGOL TÁ PEDINDO<br>
+                GABIGOL TÁ PEDINDO<br>
+                GABIGOL TÁ PEDINDO<br>
+                TOCOU PARA O GABIGOL<br>
+                BATEU<br>
+                OLHA O GOL OLHA O GOL<br>
+                OLHA O GOL OLHA O GOL<br>
+                GOOOOOOOOOOOOOLLLLLL</p>
+            </div>
+
+            <h3>O Mundial de 1981</h3>
+            <p>Em 1981, o Flamengo conquistou o título mundial ao derrotar o Liverpool por 3 a 0, em Tóquio. Nunes marcou dois gols e Adílio fechou o placar. Esse título consolidou o Flamengo como um dos maiores clubes do mundo e marcou a geração de ouro liderada por Zico.</p>
+
+            <h3>A Geração Zico</h3>
+            <p>A década de 1980 foi marcada pela presença de Zico, considerado o maior jogador da história do clube. Com ele, o Flamengo conquistou títulos nacionais e internacionais, jogando um futebol ofensivo e técnico que encantou o mundo todo.</p>
+        </section>
+
+        <section class="expectations" id="expectativas" tabindex="0" aria-labelledby="expectativas-title">
+            <h2 id="expectativas-title">Expectativas e Sonhos para 2025</h2>
+            <p>Como rubro-negro, quais são suas expectativas para o Flamengo em 2025? Compartilhe seus sonhos, esperanças e visões sobre o futuro do nosso Mengão!</p>
+            <label for="user-expectations" class="sr-only">Digite suas expectativas sobre o Flamengo para 2025</label>
+            <textarea id="user-expectations" rows="6" aria-label="Digite aqui suas expectativas sobre o que o Flamengo pode conquistar em 2025..." placeholder="Compartilhe suas expectativas, sonhos e visões sobre o Flamengo em 2025..."></textarea>
+        </section>
+
+        <div class="like-section">
+            <button class="like-button" onclick="increaseLikes()" aria-label="Curtir o Flamengo" tabindex="0">
+                ❤️ Curtir
+            </button>
+            <div class="like-count" id="like-count" aria-live="polite" aria-atomic="true" tabindex="0">
+                <span class="sr-only">Número de curtidas: </span>0
+            </div>
+        </div>
+    </main>
+    
+    <footer role="contentinfo">
+        <p>Para mais informações, <a href="https://www.flamengo.com.br/" target="_blank" rel="noopener noreferrer" tabindex="0">acesse o site oficial do Flamengo</a></p>
+        <p style="margin-top: 15px; font-size: 0.9em; color: var(--text-gray);">Site desenvolvido com foco em acessibilidade - 2025</p>
+    </footer>
+
+    <button class="button-top" onclick="scrollToTop()" aria-label="Voltar ao topo da página" tabindex="0">↑</button>
+
+    <script>
+        // Acessibilidade - Tamanho da fonte
+        function changeFontSize(size) {
+            const body = document.body;
+            body.classList.remove('large-text', 'extra-large-text');
+            
+            if (size === 'large') {
+                body.classList.add('large-text');
+            } else if (size === 'extra-large') {
+                body.classList.add('extra-large-text');
+            }
+            
+            localStorage.setItem('fontSize', size);
+        }
+
+        // Acessibilidade - Alto contraste
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+            const isHighContrast = document.body.classList.contains('high-contrast');
+            localStorage.setItem('highContrast', isHighContrast);
+        }
+
+        // Acessibilidade - Leitor de tela (simulação com fala)
+        function toggleScreenReader() {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(
+                    'Ferramenta de leitura de tela ativada. Use os atalhos do navegador para navegação completa.'
+                );
+                utterance.lang = 'pt-BR';
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Seu navegador não suporta leitura de voz. Use um leitor de tela como NVDA, JAWS ou VoiceOver.');
+            }
+        }
+
+        // Resetar configurações de acessibilidade
+        function resetAccessibility() {
+            document.body.classList.remove('large-text', 'extra-large-text', 'high-contrast');
+            localStorage.removeItem('fontSize');
+            localStorage.removeItem('highContrast');
+        }
+
+        // Carregar preferências salvas
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedFontSize = localStorage.getItem('fontSize');
+            const savedHighContrast = localStorage.getItem('highContrast');
+            
+            if (savedFontSize) {
+                changeFontSize(savedFontSize);
+            }
+            
+            if (savedHighContrast === 'true') {
+                document.body.classList.add('high-contrast');
+            }
+        });
+
+        // Sistema de likes
+        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+
+        function increaseLikes() {
+            likeCount++;
+            const likeCountElement = document.getElementById('like-count');
+            likeCountElement.innerHTML = '<span class="sr-only">Número de curtidas: </span>' + likeCount;
+            localStorage.setItem('likeCount', likeCount);
+            
+            // Feedback visual
+            likeCountElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                likeCountElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Carregar contador de likes salvo
+        window.addEventListener('DOMContentLoaded', () => {
+            const likeCountElement = document.getElementById('like-count');
+            likeCountElement.innerHTML = '<span class="sr-only">Número de curtidas: </span>' + likeCount;
+        });
+
+        // Botão voltar ao topo
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const buttonTop = document.querySelector('.button-top');
+            if (window.pageYOffset > 300) {
+                buttonTop.classList.add('show');
+            } else {
+                buttonTop.classList.remove('show');
+            }
+        });
+
+        // Navegação por teclado melhorada
+        document.addEventListener('keydown', (e) => {
+            // Atalho para pular para conteúdo principal
+            if (e.key === '1' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                document.getElementById('main-content').focus();
+                document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Anúncio de mudanças para leitores de tela
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList' && mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1 && node.hasAttribute('aria-live')) {
+                            // Já está configurado com aria-live
+                        }
+                    });
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Melhorar navegação por teclado em imagens
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('tabindex', '0');
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    // Expandir imagem ou ação desejada
+                    img.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        img.style.transform = '';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
